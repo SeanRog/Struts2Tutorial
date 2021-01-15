@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+	
+<validators>
+	<validator type="requiredstring">
+		<param name="fieldName">firstName</param>
+		<message>First name is required</message>
+	</validator>
+	<validator type="requiredstring">
+		<param name="fieldName">lastName</param>
+		<message>Last name is required</message>
+	</validator>
+	<validator type="required">
+		<param name="fieldName">gender</param>
+		<message>Gender is required</message>
+	</validator>
+	<validator type="required">
+		<param name="fieldName">age</param>
+		<message>Age is required</message>
+	</validator>
+	<validator type="int">
+		<param name="fieldName">age</param>
+		<param name="min">18</param>
+		<message>Age should be above ${min}</message>
+	</validator>
+	<validator type="int">
+		<param name="fieldName">age</param>
+		<param name="max">100</param>
+		<message>Nope. There's no way you're that old</message>
+	</validator>
+	
+	<field name="email">
+		<field-validator type="requiredstring">
+			<message>Email is required</message>
+		</field-validator>
+		<field-validator type="email">
+			<message>Must provide a valid email (v2)</message>
+		</field-validator>
+	</field>
+	
+</validators>
+	
