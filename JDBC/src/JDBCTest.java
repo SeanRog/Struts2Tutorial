@@ -1,7 +1,12 @@
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.*;
+import java.util.Properties;
 public class JDBCTest {
 
 	public static void main(String[] args) {
+		
+		Properties props = new Properties();
 
 		try {
 			System.out.println("Loading Driver");
@@ -11,9 +16,16 @@ public class JDBCTest {
 			e.printStackTrace();
 		}
 		
+		// Load properties file
+		try {
+			props.load(new FileReader("resources/application.properties"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		System.out.println("Connecting to DB");
 		
-		try (Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "RuleTheFuel1");
+		try (Connection conn = DriverManager.getConnection(props.getProperty("url"), props.getProperty("username"), props.getProperty("password"));
 				Statement st = conn.createStatement();
 				ResultSet rs = st.executeQuery("SELECT * FROM students")){ 
 			System.out.println("Connected!");
